@@ -2487,9 +2487,11 @@ public final class CameraManager {
             try {
                 List<String> cameraIds = new ArrayList<>();
                 boolean exposeAuxCamera = Camera.shouldExposeAuxCamera();
-                int size = exposeAuxCamera ? mDeviceStatus.size() : 2;Add commentMore actions
+                int size = exposeAuxCamera ? mDeviceStatus.size() : 2;
+                if (mDeviceStatus.size() < size) {
+                    size = mDeviceStatus.size();
+                }
                 for (int i = 0; i < size; i++) {
-                    if (!exposeAuxCamera && i == 2) break;
                     int status = mDeviceStatus.valueAt(i);
                     DeviceCameraInfo info = mDeviceStatus.keyAt(i);
                     if (status == ICameraServiceListener.STATUS_NOT_PRESENT
